@@ -1,0 +1,41 @@
+body {
+	min-width: 360px !important;
+	width: 40% !important;
+}
+a {
+	outline: none !important;
+}
+
+#header {
+	position: fixed !important;
+	width: 40% !important;
+	z-index: 99;
+}
+
+#header + .contents {
+	padding-top: 1.5em !important;
+}
+
+#footer {
+	display: none !important;
+}
+
+#viewer {
+	width: 60%;
+	height: 100%;
+	position: fixed;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	border: 0;
+	box-shadow: -5px 0 5px rgba(100, 100, 100, .5);
+}
+
+.plurk {
+	padding: 0 20px !important;
+}
+
+.plurk > span.meta a.r > span {
+	display: none !important;
+}
+
