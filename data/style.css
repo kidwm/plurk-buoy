@@ -1,14 +1,17 @@
 body {
 	min-width: 360px !important;
-	width: 40% !important;
 }
+
+body.right {
+	float: right;
+}
+
 a {
 	outline: none !important;
 }
 
 #header {
 	position: fixed !important;
-	width: 40% !important;
 	z-index: 99;
 }
 
@@ -31,6 +34,12 @@ a {
 	box-shadow: -5px 0 5px rgba(100, 100, 100, .5);
 }
 
+body.right #viewer {
+	right: none;
+	left: 0;
+	box-shadow: 5px 0 5px rgba(100, 100, 100, .5);
+}
+
 .plurk {
 	padding: 0 20px !important;
 }
@@ -39,3 +48,48 @@ a {
 	display: none !important;
 }
 
+/* setting */
+#addon-setting-panel {
+	position: absolute;
+	width: 570px;
+	top: 0;
+	left: 50%;
+	margin-left: -300px;
+	background: #FFF;
+	border: 1px #CCC solid;
+	z-index: 99999999;
+	padding: 10px;
+	border: 1px rgba(0,0,0,0.2) solid;
+	-moz-border-radius: 0 0 5px 5px;
+	-webkit-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+	line-height: 30px;
+}
+
+#addon-setting-panel p{
+	overflow: hidden;
+}
+
+#addon-setting-panel label{
+	float: left;
+	width: 40%;
+}
+
+#addon-setting-panel input{
+	width: 60px;
+}
+
+#addon-overlay {
+	position: fixed;
+	content: '';
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, .5);
+	width: 100%;
+	height: 100%;
+	z-index: 99999998;
+}
+
+#addon-overlay.hide {
+	display: none;
+}
