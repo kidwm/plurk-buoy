@@ -1,9 +1,6 @@
 body {
 	min-width: 360px !important;
-}
-
-body.right {
-	float: right;
+	width: 40% !important;
 }
 
 a {
@@ -12,6 +9,7 @@ a {
 
 #header {
 	position: fixed !important;
+	width: 40% !important;
 	z-index: 99;
 }
 
@@ -32,12 +30,6 @@ a {
 	bottom: 0;
 	border: 0;
 	box-shadow: -5px 0 5px rgba(100, 100, 100, .5);
-}
-
-body.right #viewer {
-	right: none;
-	left: 0;
-	box-shadow: 5px 0 5px rgba(100, 100, 100, .5);
 }
 
 .plurk {
