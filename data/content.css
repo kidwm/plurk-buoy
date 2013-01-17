@@ -1,3 +1,15 @@
 #header {
 	display: none;
 }
+
+.bigplurk > a:first-child > img {
+	float: left;
+	display: inline-block;
+	margin-right: .5em !important;
+}
+
+.response > a:first-child > img {
+	float: left;
+	display: inline-block;
+	margin-right: .5em !important;
+}

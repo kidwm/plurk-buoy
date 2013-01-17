@@ -14,3 +14,17 @@ if (top !== self) { // in the iframe
 	});
 
 }
+
+[].forEach.call(document.querySelectorAll('.bigplurk > a:first-child'), function (link) {
+	var avatar = new Image();
+	var name = link.pathname.split('/').pop();
+	avatar.src = 'http://www.plurk.com/Users/avatar?nick_name=' + name + '&size=medium';
+	link.appendChild(avatar);
+});
+
+[].forEach.call(document.querySelectorAll('.response > a:first-child'), function (link) {
+	var avatar = new Image();
+	var name = link.pathname.split('/').pop();
+	avatar.src = 'http://www.plurk.com/Users/avatar?nick_name=' + name + '&size=small';
+	link.appendChild(avatar);
+});

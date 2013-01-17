@@ -32,7 +32,13 @@ a {
 }
 
 .plurk {
-	padding: 0 20px !important;
+	padding: 0 10px !important;
+}
+
+.plurk > a:first-child > img {
+	float: left;
+	display: inline-block;
+	margin-right: .5em !important;
 }
 
 .plurk > span.meta a.r > span {

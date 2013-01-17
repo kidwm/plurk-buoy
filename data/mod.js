@@ -19,6 +19,7 @@
 
 	space.addEventListener("click", function (event) {
 		var target = event.target;
+		if (event.which && event.which != 1 || event.button == 1) return;
 		if ((target.nodeName === 'IMG' || target.nodeName === 'SPAN') && target.parentNode.nodeName === 'A') {
 			event.preventDefault();
 			frame.src = target.parentNode.href;
@@ -58,5 +59,13 @@
 			picture.querySelector('img').src = picture.href.replace(/images.plurk.com\//i, "images.plurk.com/tn_").replace(/\.jpg$/i, ".gif");
 		}
 	});
+	
+	[].forEach.call(document.querySelectorAll('.plurk > a:first-child'), function (link) {
+		var avatar = new Image();
+		var name = link.pathname.split('/').pop();
+		avatar.src = 'http://www.plurk.com/Users/avatar?nick_name=' + name + '&size=medium';
+		link.appendChild(avatar);
+	});
+	
 
 }(window || null));
