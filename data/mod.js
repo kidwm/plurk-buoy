@@ -9,8 +9,8 @@
 	}
 
 	var frame = document.createElement("IFRAME"),
-	    space = document.querySelector('#header + .contents > div.space'),
-	    video;
+		space = document.querySelector('#header + .contents > div.space'),
+		video;
 
 	document.body.appendChild(frame);
 	frame.id = "viewer";
@@ -25,18 +25,29 @@
 			frame.src = target.parentNode.href;
 			return;
 		}
-		if (target.className === 'plurk') {
-			frame.src = target.querySelector('.meta a.r').href;
+
+		// On click plurk content.
+		if (target.className.indexOf('plurk_content')>=0) {
+			var pid = target.parentNode.getAttribute('data-pid')
+			if ( pid == null) {
+				pid = target.parentNode.getAttribute("pid");
+			}
+			var threadUrl = "http://www.plurk.com/m/p/" + pid;
+			event.preventDefault();
+			frame.src = threadUrl;
 			return;
 		}
+
 		// bypass navigation button
-		if (target.nodeName !== 'A' || target.className === 'orange-but') {
+		if (target.parentNode.className.indexOf('pagination')>=0) {
 			return;
 		}
+
 		// bypass user page link
 		if (target.nodeName === 'A' && /plurk\.com\/m\/u\/.*/i.test(target.href)) {
 			return;
 		}
+
 		// bypass message actions
 		if (target.nodeName === 'A' && target.className !== 'r' && target.parentNode.className === 'meta') {
 			return;
@@ -54,9 +65,8 @@
 	});
 
 	[].forEach.call(document.querySelectorAll('a.ex_link.pictureservices'), function (picture) {
-		//picture.childNodes[1].textContent = '';
 		if (picture.getAttribute('rel') !== 'nofollow') {
-			picture.querySelector('img').src = picture.href.replace(/images.plurk.com\//i, "images.plurk.com/tn_").replace(/\.jpg$/i, ".gif");
+			picture.querySelector('img').src = picture.href.replace(/images.plurk.com\//i, "images.plurk.com/tx_").replace(/\.jpg$/i, ".gif");
 		}
 	});
 	
@@ -66,6 +76,12 @@
 		avatar.src = 'http://www.plurk.com/Users/avatar?nick_name=' + name + '&size=medium';
 		link.appendChild(avatar);
 	});
-	
+
+	// Dirty patch for disabling javascript in plurk mobile.
+	[].forEach.call(document.querySelectorAll('div.row.feed'), function(elem) {
+		var data_pid = elem.getAttribute("data-pid");
+		elem.removeAttribute("data-pid");
+		elem.setAttribute("pid", data_pid);
+	});
 
 }(window || null));
