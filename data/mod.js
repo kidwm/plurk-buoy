@@ -9,13 +9,17 @@
 	}
 
 	var frame = document.createElement("IFRAME"),
-		space = document.querySelector('#header + .contents > div.space'),
-		video;
+	    space = document.querySelector('#header + .contents > div.space'),
+	    video;
 
 	document.body.appendChild(frame);
 	frame.id = "viewer";
 	frame.style.zindex = 999;
 	frame.src = "http://www.plurk.com/m/t";
+
+	space.addEventListener("mouseup", function (event) {
+		event.stopImmediatePropagation();
+	});
 
 	space.addEventListener("click", function (event) {
 		var target = event.target;
@@ -27,19 +31,14 @@
 		}
 
 		// On click plurk content.
-		if (target.className.indexOf('plurk_content')>=0) {
-			var pid = target.parentNode.getAttribute('data-pid')
-			if ( pid == null) {
-				pid = target.parentNode.getAttribute("pid");
-			}
-			var threadUrl = "http://www.plurk.com/m/p/" + pid;
+		if (target.parentNode.getAttribute('data-pid')) {
 			event.preventDefault();
-			frame.src = threadUrl;
+			frame.src = "http://www.plurk.com/m/p/" + target.parentNode.getAttribute('data-pid');
 			return;
 		}
 
 		// bypass navigation button
-		if (target.parentNode.className.indexOf('pagination')>=0) {
+		if (target.parentNode.className.indexOf('pagination') >= 0) {
 			return;
 		}
 
@@ -59,29 +58,9 @@
 			if (/youtube.com\/v\//i.test(video)) {
 				frame.src = video.replace(/youtube.com\/v\/([0-9a-zA-Z\-\_]+).*/i, "youtube.com/embed/$1");
 			}
-		} else {
+		} else if (target.href) {
 			frame.src = target.href;
 		}
-	});
-
-	[].forEach.call(document.querySelectorAll('a.ex_link.pictureservices'), function (picture) {
-		if (picture.getAttribute('rel') !== 'nofollow') {
-			picture.querySelector('img').src = picture.href.replace(/images.plurk.com\//i, "images.plurk.com/tx_").replace(/\.jpg$/i, ".gif");
-		}
-	});
-	
-	[].forEach.call(document.querySelectorAll('.plurk > a:first-child'), function (link) {
-		var avatar = new Image();
-		var name = link.pathname.split('/').pop();
-		avatar.src = 'http://www.plurk.com/Users/avatar?nick_name=' + name + '&size=medium';
-		link.appendChild(avatar);
-	});
-
-	// Dirty patch for disabling javascript in plurk mobile.
-	[].forEach.call(document.querySelectorAll('div.row.feed'), function(elem) {
-		var data_pid = elem.getAttribute("data-pid");
-		elem.removeAttribute("data-pid");
-		elem.setAttribute("pid", data_pid);
 	});
 
 }(window || null));

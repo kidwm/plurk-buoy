@@ -2,7 +2,7 @@
 	display: none;
 }
 
-.bigplurk > a:first-child > img {
+.info > .nick > img {
 	float: left;
 	display: inline-block;
 	margin-right: .5em !important;

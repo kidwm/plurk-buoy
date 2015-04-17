@@ -1,21 +1,21 @@
 {
-    "name": "Plurk Buoy", 
-    "version": "0.2", 
+    "name": "Plurk Buoy",
+    "version": "0.4",
     "manifest_version": 2,
     "description": "Display the Plurk mobile version's link content in iframe, enhance the browsing experience on desktop.",
     "permissions": [
     	"http://www.plurk.com/*"
     ],
     "content_scripts": [
-    	{
+	{
 		"matches": ["http://www.plurk.com/m", "http://www.plurk.com/m/", "http://www.plurk.com/m?*", "http://www.plurk.com/m/?*", "http://www.plurk.com/m/u*"],
 		"css": ["data/style.css"],
-		"js": ["data/mod.js"]
+		"js": ["data/mod.js", "data/enhance.js"]
 	},
 	{
 		"matches": ["http://www.plurk.com/m/p/*"],
 		"css": ["data/content.css"],
-		"js": ["data/content.js"]
+		"js": ["data/content.js", "data/enhance.js"]
 	}
     ]
 }
