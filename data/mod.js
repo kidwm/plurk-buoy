@@ -15,7 +15,7 @@
 	document.body.appendChild(frame);
 	frame.id = "viewer";
 	frame.style.zindex = 999;
-	frame.src = "http://www.plurk.com/m/t";
+	frame.src = "https://www.plurk.com/m/t";
 
 	space.addEventListener("mouseup", function (event) {
 		event.stopImmediatePropagation();
@@ -33,7 +33,7 @@
 		// On click plurk content.
 		if (target.parentNode.getAttribute('data-pid')) {
 			event.preventDefault();
-			frame.src = "http://www.plurk.com/m/p/" + target.parentNode.getAttribute('data-pid');
+			frame.src = "https://www.plurk.com/m/p/" + target.parentNode.getAttribute('data-pid');
 			return;
 		}
 
