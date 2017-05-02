@@ -12,7 +12,7 @@
 	[].forEach.call(document.querySelectorAll('.plurk .info > a:first-child'), function (link) {
 		var avatar = new Image();
 		var name = link.pathname.split('/').pop();
-		avatar.src = 'http://www.plurk.com/Users/avatar?nick_name=' + name + '&size=medium';
+		avatar.src = 'https://www.plurk.com/Users/avatar?nick_name=' + name + '&size=medium';
 		link.appendChild(avatar);
 	});
 
